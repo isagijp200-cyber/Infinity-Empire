@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INFINITY EMPIRE | إمبراطورية اللانهائية</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="golden-bg"></div>
@@ -18,16 +19,17 @@
                 <div class="title-border"></div>
                 <p class="establish-date">📅 تأسيس الإمبراطورية: <span>2024/10/26</span></p>
             </div>
-            <div class="user-actions">
-                <button onclick="logout()" class="gold-btn" id="logoutBtn">🚪 تسجيل خروج</button>
-            </div>
         </header>
         
-        <!-- قسم الترحيب -->
+        <!-- قسم الترحيب مع تأثيرات متحركة -->
         <section class="welcome-section">
             <div class="welcome-image">
                 <img src="https://files.catbox.moe/tl7qaa.jpg" alt="INFINITY EMPIRE" class="empire-banner">
                 <div class="banner-glow"></div>
+                <div class="banner-sparkles" id="bannerSparkles"></div>
+                <div class="banner-text-overlay">
+                    <p>⚔️ في هذه المدينة، كل معركة تترك ندبة، وكل تضحية تكتب اسم صاحبها في صفحات التاريخ. طوكيو ليست مجرد خلفية للأحداث، بل قلب ينبض بالحياة، بالموت، بالانتصار... حيث لا مكان للضعفاء، بل فقط لأولئك الذين يملكون العزيمة ليكونوا أسطورة. ⚔️</p>
+                </div>
             </div>
             <div class="welcome-text">
                 <h2 class="gold-title">✨ مرحباً بكم في إمبراطورية إنفينيتي ✨</h2>
@@ -83,19 +85,23 @@
             <div class="tribes-grid" id="tribesGrid"></div>
         </section>
         
-        <!-- أزرار الروابط -->
+        <!-- أزرار الروابط الكبيرة بالخط العثماني -->
         <div class="links-section">
             <button onclick="window.open('https://whatsapp.com/channel/0029Vb6dCXr2phHSOWjVEx05', '_blank')" class="link-btn whatsapp">
-                📢 القناة الرسمية للإمبراطورية
+                <span class="btn-icon">📢</span>
+                <span class="btn-text">القناة الرسمية للإمبراطورية</span>
             </button>
             <button onclick="window.open('https://chat.whatsapp.com/CHgt7NxHGuD74gTd4jznsm', '_blank')" class="link-btn whatsapp">
-                🚪 بوابة الإمبراطورية
+                <span class="btn-icon">🚪</span>
+                <span class="btn-text">بوابة الإمبراطورية</span>
             </button>
             <button onclick="window.open('https://chat.whatsapp.com/LbChpn0GVzODTIzjOl5VFQ', '_blank')" class="link-btn whatsapp">
-                📰 صحيفة الإمبراطورية
+                <span class="btn-icon">📰</span>
+                <span class="btn-text">صحيفة الإمبراطورية</span>
             </button>
             <button onclick="window.open('https://chat.whatsapp.com/LvGuZkUR4w5JGrBIytWgrg', '_blank')" class="link-btn whatsapp">
-                ⚔️ كتائب الإمبراطورية
+                <span class="btn-icon">⚔️</span>
+                <span class="btn-text">كتائب الإمبراطورية</span>
             </button>
         </div>
         
@@ -155,18 +161,91 @@
 
     <script src="tribes.js"></script>
     <script>
-        function logout() {
-            localStorage.removeItem('currentUser');
-            window.location.href = 'login.html';
+        // إضافة شرارات ذهبية متحركة
+        function createSparkles() {
+            const container = document.getElementById('bannerSparkles');
+            if (!container) return;
+            
+            for (let i = 0; i < 30; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                sparkle.style.animationDuration = 2 + Math.random() * 2 + 's';
+                container.appendChild(sparkle);
+            }
         }
         
-        // التحقق من تسجيل الدخول
-        const currentUser = localStorage.getItem('currentUser');
-        if (!currentUser) {
-            window.location.href = 'login.html';
+        // تشغيل النشيد الحربي
+        let anthemAudio = null;
+        let anthemPlaying = false;
+        
+        function initAnthem() {
+            anthemAudio = new Audio('https://files.catbox.moe/5z89jg.mp3');
+            
+            const playBtn = document.getElementById('anthemPlayBtn');
+            const progressTrack = document.getElementById('anthemProgressTrack');
+            const progressFill = document.getElementById('anthemProgressFill');
+            const currentTimeSpan = document.getElementById('anthemCurrentTime');
+            const durationSpan = document.getElementById('anthemDuration');
+            const waveBars = document.querySelectorAll('.anthem-wave-bar');
+            
+            anthemAudio.addEventListener('loadedmetadata', () => {
+                durationSpan.textContent = formatAnthemTime(anthemAudio.duration);
+            });
+            
+            anthemAudio.addEventListener('timeupdate', () => {
+                const percent = (anthemAudio.currentTime / anthemAudio.duration) * 100;
+                progressFill.style.width = percent + '%';
+                currentTimeSpan.textContent = formatAnthemTime(anthemAudio.currentTime);
+                
+                if (!anthemAudio.paused) {
+                    waveBars.forEach(bar => bar.classList.add('active'));
+                } else {
+                    waveBars.forEach(bar => bar.classList.remove('active'));
+                }
+            });
+            
+            anthemAudio.addEventListener('ended', () => {
+                anthemPlaying = false;
+                playBtn.innerHTML = '▶️';
+                waveBars.forEach(bar => bar.classList.remove('active'));
+                progressFill.style.width = '0%';
+                anthemAudio.currentTime = 0;
+            });
+            
+            playBtn.onclick = () => {
+                if (anthemPlaying) {
+                    anthemAudio.pause();
+                    playBtn.innerHTML = '▶️';
+                    waveBars.forEach(bar => bar.classList.remove('active'));
+                } else {
+                    anthemAudio.play();
+                    playBtn.innerHTML = '⏸️';
+                    waveBars.forEach(bar => bar.classList.add('active'));
+                }
+                anthemPlaying = !anthemPlaying;
+            };
+            
+            progressTrack.onclick = (e) => {
+                const rect = progressTrack.getBoundingClientRect();
+                const percent = (e.clientX - rect.left) / rect.width;
+                anthemAudio.currentTime = percent * anthemAudio.duration;
+            };
         }
         
-        // إضافة حدث الضغط على القبائل
+        function formatAnthemTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        // مودال الصوت للقبائل
+        let currentAudio = null;
+        let isPlaying = false;
+        
         function setupTribeClick() {
             const tribes = document.querySelectorAll('.tribe-card');
             tribes.forEach((tribe) => {
@@ -176,9 +255,6 @@
                 });
             });
         }
-        
-        let currentAudio = null;
-        let isPlaying = false;
         
         function openAudioModal(tribeName) {
             const modal = document.getElementById('audioModal');
@@ -206,13 +282,13 @@
             const waveBars = document.querySelectorAll('.wave-bar');
             
             currentAudio.addEventListener('loadedmetadata', () => {
-                durationSpan.textContent = formatTime(currentAudio.duration);
+                durationSpan.textContent = formatAnthemTime(currentAudio.duration);
             });
             
             currentAudio.addEventListener('timeupdate', () => {
                 const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
                 progressFill.style.width = percent + '%';
-                currentTimeSpan.textContent = formatTime(currentAudio.currentTime);
+                currentTimeSpan.textContent = formatAnthemTime(currentAudio.currentTime);
                 
                 if (!currentAudio.paused) {
                     waveBars.forEach(bar => bar.classList.add('active'));
@@ -249,13 +325,6 @@
             };
         }
         
-        function formatTime(seconds) {
-            if (isNaN(seconds)) return '0:00';
-            const mins = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${mins}:${secs.toString().padStart(2, '0')}`;
-        }
-        
         document.getElementById('closeModalBtn').addEventListener('click', () => {
             if (currentAudio) {
                 currentAudio.pause();
@@ -276,8 +345,10 @@
             }
         });
         
-        // تحميل القبائل وإعداد الأحداث
+        // تشغيل التأثيرات
         document.addEventListener('DOMContentLoaded', () => {
+            createSparkles();
+            initAnthem();
             if (typeof loadTribes === 'function') {
                 loadTribes();
             }
