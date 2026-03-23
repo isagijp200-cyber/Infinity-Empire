@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFINITY EMPIRE | إمبراطورية اللانهائية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="golden-bg"></div>
+    <div class="particles"></div>
+    
+    <div class="container">
+        <header class="golden-header">
+            <div class="header-glow"></div>
+            <div class="empire-title">
+                <h1 class="glowing-text">『𝑰𝑵𝑭𝑰𝑵𝑰𝑻𝒀 ⊰⚜️⊱𝑬𝑴𝑷𝑰𝑹𝑬』</h1>
+                <div class="title-border"></div>
+                <p class="establish-date">📅 تأسيس الإمبراطورية: <span>2024/10/26</span></p>
+            </div>
+            <div class="user-actions">
+                <button onclick="logout()" class="gold-btn" id="logoutBtn">🚪 تسجيل خروج</button>
+            </div>
+        </header>
+        
+        <!-- قسم الترحيب -->
+        <section class="welcome-section">
+            <div class="welcome-image">
+                <img src="https://files.catbox.moe/tl7qaa.jpg" alt="INFINITY EMPIRE" class="empire-banner">
+                <div class="banner-glow"></div>
+            </div>
+            <div class="welcome-text">
+                <h2 class="gold-title">✨ مرحباً بكم في إمبراطورية إنفينيتي ✨</h2>
+                <div class="gold-line"></div>
+                <p>إنفينيتي وطنٌ للأرواح الشغوفة، حيث تتلألأ الضحكات وتتردد أصداء المرح في كل زاوية، إنها ملاذٌ للقلوب، ومأوى للأحلام، ومكانٌ حيث يجد كل فرد نفسه في بحرٍ من الحب والترابط، مكان لكل الأوتاكو وكل مبدع ولكل الأصدقاء.</p>
+                <p>إنفينيتي تعني اللانهائية، رمز لعزمتنا وعدم استسلامنا والقوى، هنا مكان الأقوياء ولا مكان للضعفاء والخونة، في إنفينيتي مع بعض أقوى.</p>
+                <div class="empire-motto">⚜️ إنفينيتي إلى الأبد ⚜️</div>
+            </div>
+        </section>
+        
+        <!-- قسم المؤسسين -->
+        <section class="founders-section">
+            <h2 class="section-title">👑 مؤسسو الإمبراطورية 👑</h2>
+            <div class="founders-grid">
+                <div class="founder-card">
+                    <div class="founder-img-wrapper">
+                        <img src="https://files.catbox.moe/pi7xil.jpg" alt="AIZEN" class="founder-img">
+                    </div>
+                    <h3 class="founder-name">⚜️ AIZEN ⚜️</h3>
+                    <p class="founder-title">الإمبراطور الأكبر</p>
+                    <p class="founder-desc">الإمبراطور إيزن، أحد مؤسسي إمبراطورية إنفينيتي العريقة، له الفضل في قيامها، كما يُعرف بالذكاء والدهاء والتفكير فيما يفيد الإمبراطورية.</p>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-img-wrapper">
+                        <img src="https://files.catbox.moe/a0os37.jpg" alt="Mihawk" class="founder-img">
+                    </div>
+                    <h3 class="founder-name">⚔️ MIHAWK ⚔️</h3>
+                    <p class="founder-title">الإمبراطور الأعلى</p>
+                    <p class="founder-desc">الإمبراطور ميهوك، أحد مؤسسي إمبراطورية إنفينيتي العريقة، يتمتع بالفخامة والشعبية والقوة والحسم، سيف الإمبراطورية الذي لا يُهزم.</p>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-img-wrapper">
+                        <img src="https://files.catbox.moe/jskyw6.jpg" alt="SUNG" class="founder-img">
+                    </div>
+                    <h3 class="founder-name">🌟 SUNG 🌟</h3>
+                    <p class="founder-title">نائب الإمبراطوران</p>
+                    <p class="founder-desc">نائب الإمبراطوران سونغ، يعتبر من مؤسسي إمبراطورية إنفينيتي العريقة، يدير الشؤون الداخلية للإمبراطورية بحكمة وإتقان.</p>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-img-wrapper">
+                        <img src="https://files.catbox.moe/t42fus.jpg" alt="Ayanokouji" class="founder-img">
+                    </div>
+                    <h3 class="founder-name">🎭 AYANOKOUJI 🎭</h3>
+                    <p class="founder-title">المستشار الأعلى</p>
+                    <p class="founder-desc">المستشار أيانوكوجي، أحد مؤسسي إمبراطورية إنفينيتي العريقة، يتمتع بالذكاء والهدوء، يأخذ القرارات المهمة، استراتيجي ممتاز، واثق من نفسه.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم القبائل -->
+        <section class="tribes-section">
+            <h2 class="section-title">🏛️ القبائل التابعة للإمبراطورية 🏛️</h2>
+            <div class="tribes-grid" id="tribesGrid"></div>
+        </section>
+        
+        <!-- أزرار الروابط -->
+        <div class="links-section">
+            <button onclick="window.open('https://whatsapp.com/channel/0029Vb6dCXr2phHSOWjVEx05', '_blank')" class="link-btn whatsapp">
+                📢 القناة الرسمية للإمبراطورية
+            </button>
+            <button onclick="window.open('https://chat.whatsapp.com/CHgt7NxHGuD74gTd4jznsm', '_blank')" class="link-btn whatsapp">
+                🚪 بوابة الإمبراطورية
+            </button>
+            <button onclick="window.open('https://chat.whatsapp.com/LbChpn0GVzODTIzjOl5VFQ', '_blank')" class="link-btn whatsapp">
+                📰 صحيفة الإمبراطورية
+            </button>
+            <button onclick="window.open('https://chat.whatsapp.com/LvGuZkUR4w5JGrBIytWgrg', '_blank')" class="link-btn whatsapp">
+                ⚔️ كتائب الإمبراطورية
+            </button>
+        </div>
+        
+        <!-- الفوتر -->
+        <footer class="golden-footer">
+            <div class="footer-glow"></div>
+            <div class="footer-content">
+                <div class="footer-logo">『𝑰𝑵𝑭𝑰𝑵𝑰𝑻𝒀 ⊰⚜️⊱𝑬𝑴𝑷𝑰𝑹𝑬』</div>
+                <p class="footer-motto">⚜️ حيث اللانهائية تلتقي بالقوة ⚜️</p>
+                <p class="footer-copyright">By: Mahmoud Dev</p>
+                <p class="footer-signature">~*تـــــوقــــيـــ✍︎ــــع إداࢪة𖠛↯*~</p>
+                <p class="footer-empire">*『𝑰𝑵𝑭𝑰𝑵𝑰𝑻𝒀 ⊰⚜️⊱𝑬𝑴𝑷𝑰𝑹𝑬』*</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- مودال الصوت -->
+    <div id="audioModal" class="audio-modal">
+        <div class="modal-content">
+            <h3>🎵 نشيد القبيلة 🎵</h3>
+            <div class="tribe-name-modal" id="modalTribeName">𝑱𝑼𝑳𝑰𝑼𝑺</div>
+            
+            <div class="wave-container">
+                <div class="wave-bars" id="waveBars">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </div>
+            
+            <div class="audio-controls">
+                <button class="audio-btn" id="playPauseBtn">▶️</button>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="time-display">
+                    <span id="currentTime">0:00</span>
+                    <span id="duration">0:00</span>
+                </div>
+            </div>
+            
+            <button class="close-modal-btn" id="closeModalBtn">إغلاق</button>
+        </div>
+    </div>
+
+    <script src="tribes.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+        
+        // التحقق من تسجيل الدخول
+        const currentUser = localStorage.getItem('currentUser');
+        if (!currentUser) {
+            window.location.href = 'login.html';
+        }
+        
+        // إضافة حدث الضغط على القبائل
+        function setupTribeClick() {
+            const tribes = document.querySelectorAll('.tribe-card');
+            tribes.forEach((tribe) => {
+                tribe.addEventListener('click', () => {
+                    const tribeName = tribe.querySelector('.tribe-name').innerText;
+                    openAudioModal(tribeName);
+                });
+            });
+        }
+        
+        let currentAudio = null;
+        let isPlaying = false;
+        
+        function openAudioModal(tribeName) {
+            const modal = document.getElementById('audioModal');
+            const modalTribeName = document.getElementById('modalTribeName');
+            modalTribeName.innerHTML = tribeName;
+            
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            
+            currentAudio = new Audio('https://files.catbox.moe/5z89jg.mp3');
+            setupAudioEvents();
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function setupAudioEvents() {
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const progressBar = document.getElementById('progressBar');
+            const progressFill = document.getElementById('progressFill');
+            const currentTimeSpan = document.getElementById('currentTime');
+            const durationSpan = document.getElementById('duration');
+            const waveBars = document.querySelectorAll('.wave-bar');
+            
+            currentAudio.addEventListener('loadedmetadata', () => {
+                durationSpan.textContent = formatTime(currentAudio.duration);
+            });
+            
+            currentAudio.addEventListener('timeupdate', () => {
+                const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
+                progressFill.style.width = percent + '%';
+                currentTimeSpan.textContent = formatTime(currentAudio.currentTime);
+                
+                if (!currentAudio.paused) {
+                    waveBars.forEach(bar => bar.classList.add('active'));
+                } else {
+                    waveBars.forEach(bar => bar.classList.remove('active'));
+                }
+            });
+            
+            currentAudio.addEventListener('ended', () => {
+                isPlaying = false;
+                playPauseBtn.innerHTML = '▶️';
+                waveBars.forEach(bar => bar.classList.remove('active'));
+                progressFill.style.width = '0%';
+                currentAudio.currentTime = 0;
+            });
+            
+            playPauseBtn.onclick = () => {
+                if (isPlaying) {
+                    currentAudio.pause();
+                    playPauseBtn.innerHTML = '▶️';
+                    waveBars.forEach(bar => bar.classList.remove('active'));
+                } else {
+                    currentAudio.play();
+                    playPauseBtn.innerHTML = '⏸️';
+                    waveBars.forEach(bar => bar.classList.add('active'));
+                }
+                isPlaying = !isPlaying;
+            };
+            
+            progressBar.onclick = (e) => {
+                const rect = progressBar.getBoundingClientRect();
+                const percent = (e.clientX - rect.left) / rect.width;
+                currentAudio.currentTime = percent * currentAudio.duration;
+            };
+        }
+        
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        document.getElementById('closeModalBtn').addEventListener('click', () => {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            document.getElementById('audioModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        document.getElementById('audioModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('audioModal')) {
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio = null;
+                }
+                document.getElementById('audioModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // تحميل القبائل وإعداد الأحداث
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof loadTribes === 'function') {
+                loadTribes();
+            }
+            setTimeout(setupTribeClick, 300);
+        });
+    </script>
+</body>
+</html>

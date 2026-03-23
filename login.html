@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول | INFINITY EMPIRE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="golden-bg"></div>
+    <div class="particles"></div>
+    
+    <div class="auth-container">
+        <div class="auth-card">
+            <h1>『𝑰𝑵𝑭𝑰𝑵𝑰𝑻𝒀 ⊰⚜️⊱𝑬𝑴𝑷𝑰𝑹𝑬』</h1>
+            <p class="auth-subtitle">🔐 تسجيل الدخول إلى حسابك</p>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="email" id="loginEmail" placeholder="البريد الإلكتروني" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="loginPassword" placeholder="كلمة المرور" required>
+                </div>
+                <button type="submit" class="auth-btn">دخول</button>
+            </form>
+            
+            <p class="error-msg" id="loginError"></p>
+            
+            <a href="signup.html" class="auth-link">ليس لديك حساب؟ إنشاء حساب جديد</a>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const foundUser = users.find(u => u.email === email && u.password === password);
+            
+            if (foundUser) {
+                localStorage.setItem('currentUser', JSON.stringify(foundUser));
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('loginError').textContent = '❌ البريد الإلكتروني أو كلمة المرور غير صحيحة';
+            }
+        });
+    </script>
+</body>
+</html>

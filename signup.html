@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب | INFINITY EMPIRE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="golden-bg"></div>
+    <div class="particles"></div>
+    
+    <div class="auth-container">
+        <div class="auth-card">
+            <h1>『𝑰𝑵𝑭𝑰𝑵𝑰𝑻𝒀 ⊰⚜️⊱𝑬𝑴𝑷𝑰𝑹𝑬』</h1>
+            <p class="auth-subtitle">📝 انضم إلى الإمبراطورية</p>
+            
+            <form id="signupForm">
+                <div class="input-group">
+                    <input type="text" id="signupName" placeholder="الاسم الكامل" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="signupEmail" placeholder="البريد الإلكتروني" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="signupPassword" placeholder="كلمة المرور" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="signupConfirm" placeholder="تأكيد كلمة المرور" required>
+                </div>
+                <button type="submit" class="auth-btn">إنشاء حساب</button>
+            </form>
+            
+            <p class="error-msg" id="signupError"></p>
+            
+            <a href="login.html" class="auth-link">لديك حساب؟ تسجيل الدخول</a>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value;
+            const confirm = document.getElementById('signupConfirm').value;
+            
+            if (password !== confirm) {
+                document.getElementById('signupError').textContent = '❌ كلمة المرور غير متطابقة';
+                return;
+            }
+            
+            if (password.length < 6) {
+                document.getElementById('signupError').textContent = '❌ كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            if (users.some(u => u.email === email)) {
+                document.getElementById('signupError').textContent = '❌ هذا البريد مسجل بالفعل';
+                return;
+            }
+            
+            const newUser = {
+                name: name,
+                email: email,
+                password: password,
+                createdAt: new Date().toISOString()
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            alert('✅ تم إنشاء الحساب بنجاح!');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
